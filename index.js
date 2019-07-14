@@ -7,6 +7,8 @@ const errorHandler = require("./handlers/error");
 
 const authRoutes = require("./routes/auth");
 const messagesRoutes = require("./routes/messages");
+const followingRoutes = require("./routes/following");
+const followerRoutes = require("./routes/follower");
 
 const { loginRequired, ensureCorrectUser } = require("./middleware/auth");
 
@@ -24,6 +26,8 @@ app.use(
   ensureCorrectUser,
   messagesRoutes
 );
+app.use("/api/users/:id/following", loginRequired, followingRoutes);
+app.use("/api/users/:id/follower", loginRequired, followerRoutes);
 
 app.get("/api/messages", loginRequired, async function(req, res, next) {
   try {
