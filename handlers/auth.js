@@ -7,7 +7,7 @@ exports.signin = async function(req, res, next) {
     let user = await db.User.findOne({
       email: req.body.email
     });
-    let { id, username, profileImageUrl } = user;
+    let { id, username, profileImageUrl, followers, following } = user;
     //check if their password is matching what was sent to server
     let isMatch = await user.comparePassword(req.body.password);
     //if matches
@@ -16,7 +16,9 @@ exports.signin = async function(req, res, next) {
         {
           id,
           username,
-          profileImageUrl
+          profileImageUrl,
+          followers,
+          following
         },
         process.env.SECRET_KEY
       );
@@ -25,7 +27,9 @@ exports.signin = async function(req, res, next) {
         id,
         username,
         profileImageUrl,
-        token
+        token,
+        followers,
+        following
       });
     } else {
       return next({ status: 400, message: "Invalid Email/Password" });
@@ -40,13 +44,15 @@ exports.signup = async function(req, res, next) {
   try {
     //create a user
     let user = await db.User.create(req.body);
-    let { id, username, profileImageUrl } = user;
+    let { id, username, profileImageUrl, following, followers } = user;
     //create a token(signing a token)
     let token = jwt.sign(
       {
         id,
         username,
-        profileImageUrl
+        profileImageUrl,
+        followers,
+        follwing
       },
       process.env.SECRET_KEY
     );
@@ -54,7 +60,9 @@ exports.signup = async function(req, res, next) {
       id,
       username,
       profileImageUrl,
-      token
+      token,
+      following,
+      followers
     });
   } catch (error) {
     //see what kind of error
