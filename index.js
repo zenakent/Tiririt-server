@@ -9,6 +9,7 @@ const authRoutes = require("./routes/auth");
 const messagesRoutes = require("./routes/messages");
 const followingRoutes = require("./routes/following");
 const followerRoutes = require("./routes/follower");
+const userRoutes = require("./routes/user");
 
 const { loginRequired, ensureCorrectUser } = require("./middleware/auth");
 
@@ -26,6 +27,8 @@ app.use(
   ensureCorrectUser,
   messagesRoutes
 );
+
+app.use("/api/users/", userRoutes);
 app.use("/api/users/:id/following", loginRequired, followingRoutes);
 app.use("/api/users/:id/follower", loginRequired, followerRoutes);
 
