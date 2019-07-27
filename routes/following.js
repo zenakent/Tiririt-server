@@ -3,8 +3,8 @@ const router = express.Router({ mergeParams: true }); //mergeParams allows acces
 
 const { addFollowing, removeFollowing } = require("../handlers/following");
 
-router.route("/addFollowing/:followingId").post(addFollowing);
+router.route("/addFollowing/:foundUserId").post(addFollowing);
 
-router.route("/removeFollowing/:followingId").delete(removeFollowing);
+router.route("/removeFollowing/:foundUserId").delete(removeFollowing);
 
 module.exports = router;

@@ -29,8 +29,8 @@ app.use(
 );
 
 app.use("/api/users/", userRoutes);
-app.use("/api/users/:id/following", loginRequired, followingRoutes);
-app.use("/api/users/:id/follower", loginRequired, followerRoutes);
+app.use("/api/users/:currentUserId/following", loginRequired, followingRoutes);
+app.use("/api/users/:foundUserId/follower", loginRequired, followerRoutes);
 
 app.get("/api/messages", loginRequired, async function(req, res, next) {
   try {
