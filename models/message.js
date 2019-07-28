@@ -14,6 +14,10 @@ const messageSchema = new mongoose.Schema({
   timestamps: {
     type: Boolean,
     default: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now()
   }
 });
 

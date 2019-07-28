@@ -25,8 +25,8 @@ exports.signin = async function(req, res, next) {
           username,
           profileImageUrl,
           followers,
-          following
-          // messages
+          following,
+          messages
         },
         process.env.SECRET_KEY
       );

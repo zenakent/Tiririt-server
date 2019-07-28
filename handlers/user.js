@@ -16,10 +16,9 @@ exports.searchUsers = async function(req, res, next) {
   try {
     if (req.query.search) {
       const regex = new RegExp(escapeRegex(req.query.search), "gi");
-      let foundUsers = await db.User.find().or([
-        { username: regex },
-        { email: regex }
-      ]);
+      let foundUsers = await db.User.find()
+        .or([{ username: regex }, { email: regex }])
+        .select("-password");
       if (foundUsers.length <= 0) {
         return next({
           status: 400,
