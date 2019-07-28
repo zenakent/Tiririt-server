@@ -42,6 +42,7 @@ app.get("/api/messages", loginRequired, async function(req, res, next) {
     return next(error);
   }
 });
+
 //all routes
 
 //error handling when route is not reached

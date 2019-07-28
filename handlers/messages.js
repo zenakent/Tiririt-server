@@ -23,7 +23,6 @@ exports.createMessage = async function(req, res, next) {
 
 exports.getMessage = async function(req, res, next) {
   try {
-    console.log(req.params);
     let message = await db.Message.findById(req.params.message_id);
     return res.status(200).json(message);
   } catch (error) {

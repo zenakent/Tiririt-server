@@ -45,7 +45,6 @@ userSchema.pre("save", async function(next) {
     if (!this.isModified("password")) {
       return next();
     }
-
     let hashPassword = await bcrypt.hash(this.password, 10); //hash and sall password
     this.password = hashPassword;
     return next();
