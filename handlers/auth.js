@@ -13,7 +13,8 @@ exports.signin = async function(req, res, next) {
       profileImageUrl,
       followers,
       following,
-      messages
+      messages,
+      bio
     } = user;
     //check if their password is matching what was sent to server
     let isMatch = await user.comparePassword(req.body.password);
@@ -26,7 +27,8 @@ exports.signin = async function(req, res, next) {
           profileImageUrl,
           followers,
           following,
-          messages
+          messages,
+          bio
         },
         process.env.SECRET_KEY
       );
@@ -38,7 +40,8 @@ exports.signin = async function(req, res, next) {
         token,
         followers,
         following,
-        messages
+        messages,
+        bio
       });
     } else {
       return next({ status: 400, message: "Invalid Email/Password" });
@@ -59,8 +62,10 @@ exports.signup = async function(req, res, next) {
       profileImageUrl,
       following,
       followers,
-      messages
+      messages,
+      bio
     } = user;
+    console.log(user);
     //create a token(signing a token)
     let token = jwt.sign(
       {
@@ -68,8 +73,9 @@ exports.signup = async function(req, res, next) {
         username,
         profileImageUrl,
         followers,
-        follwing,
-        messages
+        following,
+        messages,
+        bio
       },
       process.env.SECRET_KEY
     );
@@ -80,7 +86,8 @@ exports.signup = async function(req, res, next) {
       token,
       following,
       followers,
-      messages
+      messages,
+      bio
     });
   } catch (error) {
     //see what kind of error

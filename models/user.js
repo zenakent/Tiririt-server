@@ -37,6 +37,9 @@ const userSchema = new mongoose.Schema({
       ref: "User"
     }
   ],
+  bio: {
+    type: String
+  },
   createdAt: {
     type: Date,
     default: Date.now()
