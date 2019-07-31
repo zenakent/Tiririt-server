@@ -56,6 +56,22 @@ exports.searchUsers = async function(req, res, next) {
   }
 };
 
+exports.get3RandomUsers = async function(req, res, next) {
+  try {
+    let foundUsers = await db.User.find().select("-password");
+    let newArr = [];
+    while (newArr.length <= 2) {
+      var item = foundUsers[Math.floor(Math.random() * foundUsers.length)];
+      if (!newArr.includes(item)) {
+        newArr.push(item);
+      }
+    }
+    return res.status(200).json(newArr);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 //function for protection from regex attacks
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");

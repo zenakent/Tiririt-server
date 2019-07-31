@@ -5,10 +5,12 @@ const {
   getUser,
   searchUsers,
   getFollowers,
-  getFollowing
+  getFollowing,
+  get3RandomUsers
 } = require("../handlers/user");
 
 router.route("/searchUsers").get(searchUsers);
+router.route("/get3RandomUsers").get(get3RandomUsers);
 router.route("/:userId").get(getUser);
 router.route("/:userId/followers").get(getFollowers);
 router.route("/:userId/following").get(getFollowing);

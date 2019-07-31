@@ -14,7 +14,8 @@ exports.signin = async function(req, res, next) {
       followers,
       following,
       messages,
-      bio
+      bio,
+      profileBannerUrl
     } = user;
     //check if their password is matching what was sent to server
     let isMatch = await user.comparePassword(req.body.password);
@@ -28,7 +29,8 @@ exports.signin = async function(req, res, next) {
           followers,
           following,
           messages,
-          bio
+          bio,
+          profileBannerUrl
         },
         process.env.SECRET_KEY
       );
@@ -41,7 +43,8 @@ exports.signin = async function(req, res, next) {
         followers,
         following,
         messages,
-        bio
+        bio,
+        profileBannerUrl
       });
     } else {
       return next({ status: 400, message: "Invalid Email/Password" });
@@ -63,7 +66,8 @@ exports.signup = async function(req, res, next) {
       following,
       followers,
       messages,
-      bio
+      bio,
+      profileBannerUrl
     } = user;
     console.log(user);
     //create a token(signing a token)
@@ -75,7 +79,8 @@ exports.signup = async function(req, res, next) {
         followers,
         following,
         messages,
-        bio
+        bio,
+        profileBannerUrl
       },
       process.env.SECRET_KEY
     );
@@ -87,7 +92,8 @@ exports.signup = async function(req, res, next) {
       following,
       followers,
       messages,
-      bio
+      bio,
+      profileBannerUrl
     });
   } catch (error) {
     //see what kind of error

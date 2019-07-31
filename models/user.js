@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
   profileImageUrl: {
     type: String
   },
+  profileBannerUrl: {
+    type: String
+  },
   messages: [
     {
       type: mongoose.Schema.Types.ObjectId,
