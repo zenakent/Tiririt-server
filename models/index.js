@@ -10,7 +10,7 @@ mongoose.Promise = Promise;
 
 //connect to CLOUD db
 mongoose.connect(
-  "mongodb+srv://maui:twitter-clone@cluster0-uaukw.mongodb.net/test?retryWrites=true&w=majority",
+  "mongodb+srv://maui:1234@cluster0-uaukw.mongodb.net/test?retryWrites=true&w=majority",
   { dbName: "twitter-clone", useNewUrlParser: true }
 );
 

@@ -28,7 +28,7 @@ app.use(
   messagesRoutes
 );
 
-app.use("/api/users/", userRoutes);
+app.use("/api/users/", loginRequired, userRoutes);
 app.use("/api/users/:currentUserId/following", loginRequired, followingRoutes);
 app.use("/api/users/:foundUserId/follower", loginRequired, followerRoutes);
 
