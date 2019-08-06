@@ -9,8 +9,15 @@ mongoose.Promise = Promise;
 // });
 
 //connect to CLOUD db
+// mongoose.connect(
+//   "mongodb+srv://maui:1234@cluster0-uaukw.mongodb.net/test?retryWrites=true&w=majority",
+//   { dbName: "twitter-clone", useNewUrlParser: true }
+// );
+
 mongoose.connect(
-  "mongodb+srv://maui:1234@cluster0-uaukw.mongodb.net/test?retryWrites=true&w=majority",
+  `mongodb+srv://${process.env.MONGO_ATLAS_USER}:${
+    process.env.MONGO_ATLAS_PASS
+  }@cluster0-uaukw.mongodb.net/test?retryWrites=true&w=majority`,
   { dbName: "twitter-clone", useNewUrlParser: true }
 );
 
